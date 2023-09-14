@@ -15,6 +15,7 @@ import asyncio
 import datetime as dt
 import subprocess
 import sys
+import os
 
 from dbus_next.aio import MessageBus
 from dbus_next.service import ServiceInterface, method, dbus_property, signal
@@ -36,20 +37,23 @@ class ScreenshotInterface(ServiceInterface):
     @method()
     def Screenshot(self, include_cursor: 'b', flash: 'b', filename: 's') -> 'bs':
         debug('Got Screenshot call', include_cursor, flash, filename)
-        subprocess.run(['grim', *(['-c'] if include_cursor else []), filename])
+        subprocess.run(['flameshot', 'full','-p', filename + '.jpg'])
+        os.rename(filename + '.jpg', filename)
         return [True, filename]
 
     @method()
     def ScreenshotWindow(self, include_frame: 'b', include_cursor: 'b', flash: 'b', filename: 's') -> 'bs':
         debug('Got Window call', include_frame, include_cursor, flash, filename)
         # TODO capture current window somehow
-        subprocess.run(['grim', *(['-c'] if include_cursor else []), filename])
+        subprocess.run(['flameshot', 'full','-p', filename + '.jpg'])
+        os.rename(filename + '.jpg', filename)
         return [True, filename]
 
     @method()
     def ScreenshotArea(self, x: 'i', y: 'y', width: 'i', height: 'i', flash: 'b', filename: 's') -> 'bs':
         debug('Got Area call', (x, y, width, height), flash, filename)
-        subprocess.run(['grim', '-g', f'{x},{y} {width}x{height}', filename])
+        subprocess.run(['flameshot', 'full','-p', filename + '.jpg'])
+        os.rename(filename + '.jpg', filename)
         return [True, filename]
 
 
