@@ -15,6 +15,6 @@ Dependencies
 
 - Python 3.5 or newer
 - `dbus-next` python package (`pip install dbus-next` should work)
-- [`grim` tool](https://github.com/emersion/grim) somewhere in `PATH`
+- [`flameshot` tool](https://flameshot.org/) somewhere in `PATH`
 
 <!-- - Optional: [`swayidle`](https://github.com/swaywm/swayidle) in `PATH` - for accurate idle time calculation -->
