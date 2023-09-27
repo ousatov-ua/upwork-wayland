@@ -11,6 +11,9 @@ Make sure that both the script and Upwork application use the same DBus session 
 i.e. their DBUS_SESSION_BUS_ADDRESS environment variables have the same value!
 Otherwise they won't be able to see each other.
 
+
+As usual, it will just work bu default.
+
 Dependencies
 ------------
 
