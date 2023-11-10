@@ -1,0 +1,10 @@
+[Unit]
+Description=Imitation of the Gnome wayland screenshot shorthand.
+After=graphical-session.target
+
+[Service]
+ExecStart=%h/.local/libexec/upwork-wayland/screenshot_adapter.py
+BusName=org.gnome.Shell.Screenshot
+
+[Install]
+WantedBy=default.target
